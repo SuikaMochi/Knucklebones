@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.knucklebones.R
 import com.knucklebones.ui.main.MainMenu
 
 @Suppress("DEPRECATION")
