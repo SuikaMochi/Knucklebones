@@ -1,4 +1,4 @@
-package com.example.knucklebones.ui.main
+package com.knucklebones.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,9 +11,9 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import com.example.knucklebones.R
-import com.example.knucklebones.functions.Client
-import com.example.knucklebones.functions.Room
+import com.knucklebones.R
+import com.knucklebones.functions.Client
+import com.knucklebones.functions.Room
 import kotlinx.coroutines.*
 
 class ServerSelect : Fragment() {

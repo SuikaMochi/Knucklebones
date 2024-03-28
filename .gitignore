@@ -6,8 +6,8 @@
 /app/src/debug
 /app/src/androidTest
 /app/src/test
-/app/src/main/java/com/example/knucklebones/functions/Client.kt
-/app/src/main/java/com/example/knucklebones/functions/OldClient.kt
+/app/src/main/java/com/knucklebones/functions/Client.kt
+/app/src/main/java/com/knucklebones/functions/OldClient.kt
 /local.properties
 /.idea/caches
 /.idea/libraries

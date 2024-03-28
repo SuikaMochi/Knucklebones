@@ -1,4 +1,4 @@
-package com.example.knucklebones.ui.main
+package com.knucklebones.ui.main
 
 import androidx.lifecycle.ViewModel
 

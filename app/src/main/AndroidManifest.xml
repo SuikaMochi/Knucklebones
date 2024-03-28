@@ -14,10 +14,10 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.KnucklebonesNight"
-        tools:ignore="ContentDescription"
+        tools:ignore="ContentDescription,DiscouragedApi"
         tools:targetApi="32">
         <activity
-            android:name=".MainActivity"
+            android:name="com.knucklebones.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

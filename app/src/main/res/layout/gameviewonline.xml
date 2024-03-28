@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".ui.main.GameViewOnline">
+    tools:context="com.knucklebones.ui.main.GameViewOnline">
 
     <Button
         android:id="@+id/back_button"

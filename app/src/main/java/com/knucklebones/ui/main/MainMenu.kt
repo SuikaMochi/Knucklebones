@@ -1,4 +1,4 @@
-package com.example.knucklebones.ui.main
+package com.knucklebones.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.knucklebones.R
-import com.example.knucklebones.functions.Client
+import com.knucklebones.R
+import com.knucklebones.functions.Client
 import kotlinx.coroutines.runBlocking
 
 class MainMenu : Fragment() {

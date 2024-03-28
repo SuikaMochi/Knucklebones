@@ -1,11 +1,12 @@
-package com.example.knucklebones
+package com.knucklebones
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.example.knucklebones.ui.main.MainMenu
+import com.knucklebones.R
+import com.knucklebones.ui.main.MainMenu
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {

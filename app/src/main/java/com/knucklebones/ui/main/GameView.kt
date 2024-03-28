@@ -1,4 +1,4 @@
-package com.example.knucklebones.ui.main
+package com.knucklebones.ui.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,8 +12,15 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.knucklebones.R
-import com.example.knucklebones.functions.*
+import com.knucklebones.R
+import com.knucklebones.functions.*
+import com.knucklebones.functions.Dice
+import com.knucklebones.functions.DiceMat
+import com.knucklebones.functions.DiceMatColumn
+import com.knucklebones.functions.NPC
+import com.knucklebones.functions.calcBlockScore
+import com.knucklebones.functions.calcFullScore
+import com.knucklebones.functions.isOverlapping
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlin.random.Random

@@ -1,4 +1,4 @@
-package com.example.knucklebones.functions
+package com.knucklebones.functions
 
 import android.widget.TextView
 
