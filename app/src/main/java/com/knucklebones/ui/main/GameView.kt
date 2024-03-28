@@ -140,8 +140,7 @@ class GameView() : Fragment() {
 	}
 
 	//Rolls the dice, new random value and retrieve image
-	private fun rollDice()
-	{
+	private fun rollDice() {
 		diceTray.getLocationOnScreen(location)
 		diceTray.isClickable = false
 		val num = (1..6).random(Random(System.currentTimeMillis()))
@@ -234,7 +233,6 @@ class GameView() : Fragment() {
 	//NPC makes their turn based on their play type
 	private fun npcTurn() {
 		kotlin.run breaking@ {
-
 			val nDice = (1..6).random(Random(System.currentTimeMillis()))
 			//NPC decision not yet working correctly?
 			//Something is not working somewhere?
