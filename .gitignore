@@ -6,8 +6,6 @@
 /app/src/debug
 /app/src/androidTest
 /app/src/test
-/app/src/main/java/com/knucklebones/functions/Client.kt
-/app/src/main/java/com/knucklebones/functions/OldClient.kt
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -21,3 +19,4 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/src/main/java/com/knucklebones/private_values/
