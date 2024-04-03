@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.UiThread
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import com.knucklebones.R
 import com.knucklebones.functions.Dice
 import com.knucklebones.functions.DiceMat
@@ -20,6 +23,8 @@ import com.knucklebones.functions.NPC
 import com.knucklebones.functions.calcBlockScore
 import com.knucklebones.functions.calcFullScore
 import com.knucklebones.functions.isOverlapping
+import kotlinx.coroutines.launch
+import kotlin.coroutines.startCoroutine
 import kotlin.random.Random
 
 @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
@@ -210,8 +215,6 @@ class GameView() : Fragment() {
 										npcTurn()
 									}
 
-									diceTray.isClickable = true
-
 									return@breaking
 								}
 								else {
@@ -232,7 +235,7 @@ class GameView() : Fragment() {
 	//Make this shit scalable and less fucked so it works better with NPC
 	//NPC makes their turn based on their play type
 	private fun npcTurn() {
-		kotlin.run breaking@ {
+		Thread breaking@ {
 			val nDice = (1..6).random(Random(System.currentTimeMillis()))
 			//NPC decision not yet working correctly?
 			//Something is not working somewhere?
@@ -242,38 +245,44 @@ class GameView() : Fragment() {
 
 			eDiceMat.column[nColumn].row.forEach { sl ->
 				if (sl.isSet == 0) {
+					val timeout = (500..2000).random(Random(System.currentTimeMillis())).toLong()
+					Thread.sleep(timeout)
 					sl.slot.setImageResource(getDiceImg(nDice))
 					sl.isSet = 1
 					sl.value = nDice
+
+//					println("nColumn: $nColumn")
+//					println("nDice: $nDice")
+
 					diceAttack(sl, pDiceMat, nColumn)
 
-					println("nColumn: $nColumn")
-					println("nDice: $nDice")
 
 					theTracker(pDiceMat)
 					isGameEnd(eDiceMat)
 
-					Thread.sleep(1000)
+					activity?.runOnUiThread {
+						diceTray.isClickable = true
+					}
+
 					return@breaking
 				}
 			}
-		}
+		}.start()
 	}
 
 	//New dice "attacking" the row of the other side
 	private fun diceAttack(attackerDice: Dice, defenderMat: DiceMat, columnNr: Int) {
-		println("____________\nDice Attack\n____________\n")
+		println("____________\nDice Attack\n")
 		println("attackerDice: ${attackerDice.value}")
+		println("attackerColumn: $columnNr")
 
 		defenderMat.column[columnNr].row.forEach {
-			if (it.value == attackerDice.value)
-			{
-				println("defenderRow: ${it.value}")
+			if (it.value == attackerDice.value) {
+				println("defenderVal: ${it.value}")
 				println("defenderRow: ${it.slotNr}")
 				it.isSet = 0
 				it.value = 0
 				it.slot.setImageResource(0)
-
 			}
 		}
 	}

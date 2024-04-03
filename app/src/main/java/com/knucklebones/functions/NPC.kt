@@ -92,13 +92,13 @@ class NPC(type: Int) {
 		ftrScores[0] = calcBlockScore(pFutureMat.column[0])
 		ftrScores[1] = calcBlockScore(pFutureMat.column[1])
 		ftrScores[2] = calcBlockScore(pFutureMat.column[2])
-
+/*
 		print("____________\nAttack\n____________\n")
 
 		println("ftrScores_0: ${ftrScores[0]}")
 		println("ftrScores_1: ${ftrScores[1]}")
 		println("ftrScores_2: ${ftrScores[2]}")
-
+*/
 		lisScores[0][0] =
 			if (pColumnsScores[0] > ftrScores[0]) { abs(pColumnsScores[0] - ftrScores[0]) }
 			else { 0 }
@@ -113,7 +113,7 @@ class NPC(type: Int) {
 			if (pColumnsScores[2] > ftrScores[2]) { abs(pColumnsScores[2] - ftrScores[2]) }
 			else { 0 }
 		lisScores[2][1] = 2
-
+/*
 		println("lisScores_0: ${lisScores[0]}")
 
 		println("lisScores_1: ${lisScores[1]}")
@@ -125,7 +125,7 @@ class NPC(type: Int) {
 		println("lisScores_1 Sorted: ${lisScores.sortedByDescending{ it[0] }[1]}")
 
 		println("lisScores_2 Sorted: ${lisScores.sortedByDescending{ it[0] }[2]}")
-
+*/
 		if (lisScores[0][0] == 0 && lisScores[1][0] == 0 && lisScores[2][0] == 0)
 		{
 			return getPoints(npcMat, nDice)
@@ -153,13 +153,13 @@ class NPC(type: Int) {
 		ftrScores[0] = calcBlockScore(nFutureMat.column[0])
 		ftrScores[1] = calcBlockScore(nFutureMat.column[1])
 		ftrScores[2] = calcBlockScore(nFutureMat.column[2])
-
+/*
 		print("____________\nPoints\n____________\n")
 
 		println("ftrScores_0: ${ftrScores[0]}")
 		println("ftrScores_1: ${ftrScores[1]}")
 		println("ftrScores_2: ${ftrScores[2]}")
-
+*/
 		lisScores[0][0] =
 			if (nColumnsScores[0] < ftrScores[0]) { ftrScores[0] }
 			else { 0 }
@@ -174,7 +174,7 @@ class NPC(type: Int) {
 			if (nColumnsScores[2] < ftrScores[2]) { ftrScores[2] }
 			else { 0 }
 		lisScores[2][1] = 2
-
+/*
 		println("lisScores_0: ${lisScores[0]}")
 
 		println("lisScores_1: ${lisScores[1]}")
@@ -186,7 +186,7 @@ class NPC(type: Int) {
 		println("lisScores_1 Sorted: ${lisScores.sortedByDescending{ it[0] }[1]}")
 
 		println("lisScores_2 Sorted: ${lisScores.sortedByDescending{ it[0] }[2]}")
-
+*/
 		lisScores.sortedByDescending { it[0] }.forEach {
 			if (npcMat.column[it[1]].full != 1)
 			{

@@ -1,8 +1,6 @@
 package com.knucklebones.functions
 
 import com.knucklebones.private_values.getIPPub
-import io.ktor.server.engine.embeddedServer
-import io.ktor.server.netty.Netty
 import kotlinx.coroutines.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
