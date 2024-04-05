@@ -23,7 +23,11 @@ import com.knucklebones.functions.NPC
 import com.knucklebones.functions.calcBlockScore
 import com.knucklebones.functions.calcFullScore
 import com.knucklebones.functions.isOverlapping
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.startCoroutine
 import kotlin.random.Random
 
@@ -208,6 +212,7 @@ class GameView() : Fragment() {
 									sl.value = currentDice
 									newDice.visibility = View.INVISIBLE
 									diceAttack(sl, eDiceMat, it.columnNr)
+									println("Player")
 
 									theTracker(eDiceMat)
 									if (!isGameEnd(pDiceMat))
@@ -236,6 +241,7 @@ class GameView() : Fragment() {
 	//NPC makes their turn based on their play type
 	private fun npcTurn() {
 		Thread breaking@ {
+			Thread.sleep((100..1000).random(Random(System.currentTimeMillis())).toLong())
 			val nDice = (1..6).random(Random(System.currentTimeMillis()))
 			//NPC decision not yet working correctly?
 			//Something is not working somewhere?
@@ -245,17 +251,16 @@ class GameView() : Fragment() {
 
 			eDiceMat.column[nColumn].row.forEach { sl ->
 				if (sl.isSet == 0) {
-					val timeout = (500..2000).random(Random(System.currentTimeMillis())).toLong()
-					Thread.sleep(timeout)
-					sl.slot.setImageResource(getDiceImg(nDice))
-					sl.isSet = 1
-					sl.value = nDice
+					activity?.runOnUiThread {
+						sl.slot.setImageResource(getDiceImg(nDice))
+						sl.isSet = 1
+						sl.value = nDice
+					}
 
 //					println("nColumn: $nColumn")
 //					println("nDice: $nDice")
 
 					diceAttack(sl, pDiceMat, nColumn)
-
 
 					theTracker(pDiceMat)
 					isGameEnd(eDiceMat)
@@ -280,14 +285,17 @@ class GameView() : Fragment() {
 			if (it.value == attackerDice.value) {
 				println("defenderVal: ${it.value}")
 				println("defenderRow: ${it.slotNr}")
-				it.isSet = 0
-				it.value = 0
-				it.slot.setImageResource(0)
+				activity?.runOnUiThread {
+					it.isSet = 0
+					it.value = 0
+					it.slot.setImageResource(0)
+				}
 			}
 		}
 	}
 
 	//Tracks the columns and sets full state accordingly
+	//Why is it calculating scrap shit now??? ;_;
 	private fun theTracker(toTrack: DiceMat) {
 		var columnCounter = 0
 
@@ -297,8 +305,10 @@ class GameView() : Fragment() {
 				rowCounter += itt.isSet
 				if (itt.isSet == 0)
 				{
-					itt.value = 0
-					itt.slot.setImageResource(0)
+					activity?.runOnUiThread {
+						itt.value = 0
+						itt.slot.setImageResource(0)
+					}
 				}
 			}
 			if (rowCounter == 3)
